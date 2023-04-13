@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 .vscode/*
+static/*
 comment/*
 avatar/*
 ciyun/*
