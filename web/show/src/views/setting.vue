@@ -1,0 +1,104 @@
+<template>
+    <div class="my">
+        <div class="card">
+            <div class="main">
+                <div class="profile"><img src="" alt=""></div>
+                <span>xianren</span>
+            </div>
+                
+            <div class="recommend">
+                <div>{{line}}</div>
+                <div class="from">{{from}}</div>
+            </div>
+            <div calss="grade">
+                <span>等级</span>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import {ref,reactive,onMounted} from 'vue'
+import { reqRecommend } from '@/api';
+const line = ref('')
+const from = ref('')
+// 获取异步的数据
+const getRec = async ()=>{
+    let lines = localStorage.getItem('line')
+    let res
+    lines && (res=JSON.parse(lines))
+    if(lines && res.time !== new Date().getDate()){
+        line.value = res.line
+        from.value = res.from
+        return 
+    }
+    const {data} = await reqRecommend()
+    if(data.code === 200){
+        console.log(data)
+        line.value = data.line.split('。')[0]
+        from.value = data.line.split('。')[1]
+        // 将数据保存
+        localStorage.setItem('line',JSON.stringify({
+            line:line.value,
+            from:from.value,
+            time:new Date().getDate
+        }))
+
+    }
+}
+// 生命周期钩子中获取数据
+onMounted(() => {
+    getRec()
+})
+</script>
+
+<style lang="scss" scoped>
+.my {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        height: 500px;
+        border-radius: 5% 5% 0 0;
+        box-shadow: 0 0 10px #000;
+
+        .main {
+            padding: 40px 20px 0 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            .profile {
+                height: 100px;
+                width: 100px;
+                margin-bottom: 10px;
+                border-radius: 50%;
+                background: #ccc;
+            }
+        }
+
+        .recommend {
+            padding:10px;
+            height: 100px;
+            font-family: monospace, sans-serif;
+            font-size: 15px;
+            .from {
+                margin-top: 10px;
+                text-align: right;
+            }
+
+        }
+        .grade{
+            height: 200px;
+        }
+
+    } 
+   
+}
+
+</style>

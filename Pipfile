@@ -8,6 +8,18 @@ pymysql = "*"
 pandas = "*"
 bs4 = "*"
 django = "==3"
+mysqlclient = "*"
+django-cors-headers = "*"
+wordcloud = "*"
+jieba = "*"
+requests = "*"
+lxml = "*"
+selenium = "*"
+django-cookies-samesite = "*"
+django-extensions = "*"
+django-werkzeug-debugger-runserver = "*"
+pyopenssl = "*"
+to = "*"
 
 [dev-packages]
 
