@@ -165,7 +165,7 @@ export const calendarBar = (year:number,nameData:Array<string>,boxData:Array<num
 export const countryCount = (nameArr:Array<string>,dataArr:Array<number>,year:number):EChartsOption=>{
   option = {
     title: {
-      text: `${year}~${year+10}各国家及地区高分电影数量`,
+      text: `${year}~${year+10}各国家及地区出品电影数量`,
       left:'center',
       top:'10'
     },

@@ -60,7 +60,7 @@ export const formatPieData = (data: proportionInt): Array<pieData> => {
 export const setCountry = (data: Array<pieData>, title: Array<string>,year:number): EChartsOption => {
   let option: EChartsOption = {
     title: {
-      text: `${year}~${year+10}各国家及地区高分电影占比`,
+      text: `${year}~${year+10}各国家及地区出品电影占比`,
       left: 'center',
       top:'10'
     },

@@ -90,14 +90,12 @@ def resTandP(request):
     res['data'] = analysis.getTandP(database.getProfit())
     return JsonResponse(res)
 # 返回类型和评分
-
 def resTandG(request):
     res = {}
     res['code'] = 200
     res['msg'] = error.getMsg(200)
     res['data'] = analysis.getTandG(database.getScore())
     return JsonResponse(res)
-
 # 返回国家数量
 def resYCount(request):
     res = {}

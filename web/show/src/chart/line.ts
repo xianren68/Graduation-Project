@@ -18,7 +18,7 @@ export const setTypeline = (name:Array<string>,value:Array<number>):EChartsOptio
           data: name,
           axisLabel:{
             interval:0,
-            rotate:-38
+            rotate:-40
           }
         },
         yAxis: {
@@ -47,7 +47,7 @@ export const formatLine = (data:proportionInt):{name:Array<string>,value:Array<n
 export const setCountryLine = (name:Array<string>,data:Array<number>,country:string):EChartsOption=>{
   let option:EChartsOption = {
     title: {
-      text: `${country}出品高分电影数量随年份变化图`,
+      text: `${country}出品电影数量随年份变化图`,
       left: 'center',
       top:'10',
     },

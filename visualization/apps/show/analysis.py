@@ -36,7 +36,6 @@ def getAll():
     data = pd.read_sql(sql,db)
     db.close()
     return data
-# def date():
 # 获取历年排行榜
 def getCalenderTop(year:int)->list[dict]:
     data = database.getCalendar(year)
@@ -67,6 +66,7 @@ def getTandP(data:tuple)->dict:
          profit = i[2] - i[1]
          l = i[0].split(',')
          for j in l:
+            j = j.strip(' ')
             if j in d:
                  d[j].append(profit)
             else:
@@ -80,6 +80,7 @@ def getTandG(data:tuple)->dict:
         grade = i[1]
         l = i[0].split(',')
         for j in l:
+            j = j.strip(' ')
             if j in d:
                  d[j].append(grade)
             else:

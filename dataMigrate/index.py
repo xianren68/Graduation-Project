@@ -85,6 +85,6 @@ def merge():
     for i in data:
         mongoUpdate(i)
     
-migrate()
-merge()
+# migrate()
+# merge()
     

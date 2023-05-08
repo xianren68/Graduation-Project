@@ -69,7 +69,6 @@ export function TandPEchart(arr:Array<Array<number>>,strArr:Array<string>,show:s
             transform: {
               type: 'boxplot',
               config: { itemNameFormatter:function(param:any):string{
-                 console.log(strArr)
                   return strArr[param.value]
               } }
             }

@@ -129,8 +129,8 @@ dmypy.json
 .pyre/
 
 .vscode/*
-static/*
-comment/*
-avatar/*
-ciyun/*
+visualization/static/*
+visualizationMongo/static/*
+
+
 

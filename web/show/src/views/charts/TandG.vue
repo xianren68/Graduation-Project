@@ -22,6 +22,7 @@ const format = (data:TandPInt)=>{
         arr.push(data[i])
         strArr.push(i)
     }
+    
     let option = TandPEchart(arr,strArr,'%','评分')
     let mychart = echarts.init(chart.value)
     option && mychart.setOption(option)

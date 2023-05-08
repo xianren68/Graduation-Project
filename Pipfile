@@ -20,6 +20,7 @@ django-extensions = "*"
 django-werkzeug-debugger-runserver = "*"
 pyopenssl = "*"
 to = "*"
+pymongo = "*"
 
 [dev-packages]
 
