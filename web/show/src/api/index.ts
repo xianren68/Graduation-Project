@@ -3,7 +3,7 @@ import { user } from '../type/User'
 // 用户注册
 export const reqRegister = (data:FormData)=> req.post('/user/register/',data)
 // 用户登录
-export const reqLogin = (data:user) => req.get(`/user/login?name=${data.name}&password=${data.password}`)
+export const reqLogin = (data:user) => req.get(`/user/login/?name=${data.name}&password=${data.password}`)
 // 获取票房排行信息
 export const reqBoxoffice = ()=> req.get('/show/boxoffice/')
 // 返回词云图地址
@@ -22,3 +22,6 @@ export const reqTandP = ()=>req.get('/show/tandp/')
 export const reqTandG = ()=>req.get('/show/tandg/')
 // 国家数量
 export const reqCountry = ()=>req.get('/show/cy/')
+// 搜索电影
+export const reqSearch = (name:string)=>req.get(`/show/search/?name=${name}`)
+// 获取画廊')

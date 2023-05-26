@@ -67,3 +67,10 @@ def getAll()->dict:
     res['year'] = yearArr
     res['country'] = countryArr
     return res
+
+# 获取查找的电影
+def search(name:str)->dict:
+    collection = mongoConnect()
+    res = collection.find_one({'title':name})
+    res.pop('_id')
+    return res

@@ -80,7 +80,10 @@ onBeforeMount(() => {
 .home {
     height: 100%;
     display: flex;
-    background-color: #fff;
+    .nav {
+        background-color: #fff;
+    }
+    
 
 }
 

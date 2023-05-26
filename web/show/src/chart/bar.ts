@@ -55,7 +55,7 @@ export const setBoxchart = (nameData:Array<string>,boxData:Array<number>):EChart
           type: 'value',
           boundaryGap: [0, 0.01],
           axisLabel: {
-            formatter: '{value} $'
+            formatter: '{value}'
           }
         },
         yAxis: {

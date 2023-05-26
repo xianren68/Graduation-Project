@@ -1,10 +1,7 @@
-from django.shortcuts import render
-from django.core import serializers
 from . import models,ciyun
 from django.http import JsonResponse,HttpResponse
 from utils import error
 from . import analysis
-from . import database
 from . import mongo
 
 # Create your views here.
@@ -56,7 +53,7 @@ def resTypeProportion(request):
 def resRecommend(request):
     res = {}
     res['code'] = 200
-    line = models.getRandom().content
+    line = mongo.getRandom().content
     res['msg'] = error.getMsg(200)
     # if "--" in line:
     res['line'] = line
@@ -99,4 +96,11 @@ def resYCount(request):
     res['code'] = 200
     res['msg'] = error.getMsg(200)
     res['data'] = analysis.countryYear(mongo.getAll())
+    return HttpResponse(JsonResponse(res))
+# 返回搜索电影
+def resSearch(request):
+    res = {}
+    res['code'] = 200
+    res['msg'] = error.getMsg(200)
+    res['data'] = mongo.search(request.GET.get('name'))
     return HttpResponse(JsonResponse(res))

@@ -2,7 +2,7 @@
     <div class="my">
         <div class="card">
             <div class="main">
-                <div class="profile"><img src="" alt=""></div>
+                <div class="profile"><img src="@/assets/images.png" alt=""></div>
                 <span>xianren</span>
             </div>
                 
@@ -10,9 +10,10 @@
                 <div>{{line}}</div>
                 <div class="from">{{from}}</div>
             </div>
-            <div calss="grade">
-                <span>等级</span>
-
+            <div class="quit">
+                <svg class="icon" aria-hidden="true" @click="router.push('/login')">
+                    <use xlink:href="#icon-tuichu"></use>
+                </svg>
             </div>
         </div>
     </div>
@@ -21,8 +22,10 @@
 <script setup lang="ts">
 import {ref,reactive,onMounted} from 'vue'
 import { reqRecommend } from '@/api';
+import {useRouter} from 'vue-router'
 const line = ref('')
 const from = ref('')
+const router = useRouter()
 // 获取异步的数据
 const getRec = async ()=>{
     let lines = localStorage.getItem('line')
@@ -62,6 +65,7 @@ onMounted(() => {
 
     .card {
         display: flex;
+        position: relative;
         flex-direction: column;
         align-items: center;
         width: 300px;
@@ -79,6 +83,10 @@ onMounted(() => {
                 margin-bottom: 10px;
                 border-radius: 50%;
                 background: #ccc;
+                overflow: hidden;
+                img {
+                    height: 100%;
+                }
             }
         }
 
@@ -96,8 +104,20 @@ onMounted(() => {
         .grade{
             height: 200px;
         }
+        .quit {
+            position: absolute;
+            right: 10px;
+            bottom:10px;
+            display: flex;
+            justify-content: flex-end;
+            .icon {
+
+                height: 20px;
+            }
+        }
 
     } 
+    
    
 }
 

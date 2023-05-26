@@ -11,5 +11,6 @@ urlpatterns = [
     path('home/',views.resHome),
     path('tandp/',views.resTandP),
     path('tandg/',views.resTandG),
-    path('cy/',views.resYCount)
+    path('cy/',views.resYCount),
+    path('search/',views.resSearch)
 ]

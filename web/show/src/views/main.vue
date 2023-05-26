@@ -1,24 +1,31 @@
 <template>
     <div class="recommend">
-        <div ref="main" class="main">
-            <img :src="homeData[11]" alt="">
-            <div class="content">
-                <h2 class="title">{{homeData[1]}}</h2>
-                <div class="type">{{homeData[2]}}·{{homeData[3]}}·{{homeData[7]}}</div>
-                <div class="line">{{homeData[8]}}</div>
-                <div class="desc">{{homeData[9]}}</div>
-                <div></div>
+        <!-- 背景 -->
+        <img :src="homeData.background" alt="" class="cover">
+        <div class="search">
+            <el-input v-model="input" placeholder="请输入电影名" >
+                <template #prefix>
+                    <i-ep-Search @click="search"></i-ep-Search>
+                  </template>
+            </el-input>
+        </div>
+        <div class="main">
+            <div class="left">
+                <img :src="homeData.cover" alt="">
             </div>
-            <div class="aside">
-                    <el-progress type="circle" :percentage="homeData[4]" status="success">
-                    <template #default="{ percentage }">
-                        <span class="percentage-value">{{ percentage }}%</span>
-                        <br>
-                        <span class="percentage-label">好评率</span>
-                      </template>
-                      </el-progress>
-                <div>预算${{homeData[5]==0?homeData[5]:"-"}}</div>
-                <div>票房${{homeData[6]==0?homeData[6]:"-"}}</div>
+            <div class="right">
+                <div class="title">{{homeData.title}}</div>
+                <div class="info">{{`${homeData.release_date}  ${homeData.types}  ${homeData.runtime}`}}</div>
+                <div class="grade">
+                    用户评分
+                    <el-progress :percentage="homeData.grade" color="#13CE66" />
+                </div>
+                <div class="line">
+                    {{homeData.line }}
+                </div>
+                <div class="introduce">
+                    {{homeData.introduction}}
+                </div>
             </div>
         </div>
     </div>
@@ -26,15 +33,18 @@
 
 <script setup lang="ts">
 import {reactive,ref,onMounted} from 'vue'
-import { reqhome } from '../api';
+import { reqhome,reqSearch } from '../api';
 // 推荐电影
-const homeData = reactive([])
+const homeData:any = reactive({})
 const main = ref()
+const input = ref<string>('')
 // 获取本地存储数据
 const getHomeData = ():boolean=>{
     let data = localStorage.getItem('homeData')
     if(data && new Date().getDate() == JSON.parse(data).day){
+        
         Object.assign(homeData,JSON.parse(data).home)
+        
         return true
     }
     return false
@@ -48,10 +58,15 @@ const reqHome = async ()=>{
     const {data} = await reqhome()
     if(data.code == 200){
         Object.assign(homeData,data.data)
-        // 设置背景图片
-        main.value.style.backgroundImage = "url("+ data.data[10] +")"
         localStorage.setItem('homeData',JSON.stringify({home:data.data,day:new Date().getDate()}))
     
+    }
+}
+// 搜索电影
+const search = async()=>{
+    const {data} = await reqSearch(input.value)
+    if(data.code == 200){
+        Object.assign(homeData,data.data)
     }
 }
 onMounted(()=>{
@@ -60,48 +75,61 @@ onMounted(()=>{
 </script>
 
 <style lang="scss" scoped>
-    .recommend{
+    .recommend {
+        position: relative;
+        padding: 10px;
+        color:#fff;
+        .cover {
+            width:100%;
+            filter: blur(1rem);
+            position: fixed;
+            left: 0;
+            top:0;
+            z-index: -2;
+        }
+        .search {
+            width: 400px;
+            margin-left: 700px;
+            margin-top: 100px;
+        }
         .main {
+            margin-top: 100px;
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            height: 100%;
-            background-size:cover;
-            background-repeat:no-repeat;
-            background-blend-mode: multiply;
-            background-color: rgba(112, 103, 103, 0.6);
-            background-attachment:fixed;
-            color:#fff;
-            padding: 20px;
-            img {
-                margin-top: 80px;
-                height: 60%;
+            .left {
+                padding: 20px;
+                width:20%;
+                img{
+                    width:100%;
+                }
             }
-            .content {
-                padding: 40px;
-                width:50%;
-                .type {
-                    margin:10px 0;
+            .right {
+                width:80%;
+                padding-left: 40px;
+                display: flex;
+                flex-direction: column;
+                .title {
+                    font-size: 50px;
+                }
+                .info {
+                    margin-top: 20px;
+                    font-size: 14px;
+                }
+                .grade{
+                    margin-top: 20px;
+                    width: 400px;
                 }
                 .line {
-                    margin-top:60px;
-                    height: 40px;
-                    font-family: 楷体;
+                    margin-top: 20px;
+                    font-size: 20px;
+                    font-style: italic;
+                    color:#2e2d2d;
                 }
-                .desc {
-                    height: 40%;
-                    overflow:hidden;
+                .introduce {
+                    margin-top:40px;
+                    width: 800px;
+                    
                 }
-            }
-            .aside {
-                .score{
-                    .demo-progress {
-                        width: 200px;
-                    }
-                    line-height: 20px;
-                }
-                margin-top: 40px;
-                width: 20%;
+
             }
         }
     }

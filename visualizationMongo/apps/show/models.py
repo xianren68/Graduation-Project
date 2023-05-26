@@ -1,5 +1,4 @@
 from django.db import models
-import random
 # 定义排行榜数据的模型
 class BoxOffice(models.Model):
     name = models.CharField(max_length=50)
