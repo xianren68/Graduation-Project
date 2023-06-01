@@ -122,7 +122,7 @@ onMounted(()=>{
                     margin-top: 20px;
                     font-size: 20px;
                     font-style: italic;
-                    color:#2e2d2d;
+                    color:#ccc;
                 }
                 .introduce {
                     margin-top:40px;

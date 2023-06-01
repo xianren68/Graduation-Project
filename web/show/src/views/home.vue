@@ -19,9 +19,9 @@
                         类型占比
                     </el-menu-item>
                     <el-menu-item index="/tandp" >
-                        盈利
+                        类型与盈利
                     </el-menu-item>  
-                    <el-menu-item index="/tandg">评分</el-menu-item>
+                    <el-menu-item index="/tandg">类型与评分</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="2">
                     <template #title>
@@ -36,7 +36,7 @@
                     <el-icon><i-ep-Orange/></el-icon>  
                         <span>国家</span>
                 </el-menu-item>
-                <el-menu-item index="/setting">
+                <el-menu-item index="/self">
                     <el-icon><i-ep-Setting/></el-icon>
                     <span>个人设置</span>
                 </el-menu-item>

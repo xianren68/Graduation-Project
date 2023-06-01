@@ -3,17 +3,17 @@
         <div class="card">
             <div class="main">
                 <div class="profile"><img src="@/assets/images.png" alt=""></div>
-                <span>xianren</span>
+                <div class="edit">
+                    <span>用户名：xianren</span>
+                </div>
             </div>
-                
-            <div class="recommend">
-                <div>{{line}}</div>
-                <div class="from">{{from}}</div>
+            <div class="press">
+                <div>权限：</div>
+                <div>管理员</div>
             </div>
             <div class="quit">
-                <svg class="icon" aria-hidden="true" @click="router.push('/login')">
-                    <use xlink:href="#icon-tuichu"></use>
-                </svg>
+                <el-button type="primary">编辑</el-button>
+                 <el-button type="info" >退出</el-button>
             </div>
         </div>
     </div>
@@ -65,7 +65,6 @@ onMounted(() => {
 
     .card {
         display: flex;
-        position: relative;
         flex-direction: column;
         align-items: center;
         width: 300px;
@@ -78,8 +77,8 @@ onMounted(() => {
             text-align: center;
             margin-bottom: 40px;
             .profile {
-                height: 100px;
-                width: 100px;
+                height: 150px;
+                width: 150px;
                 margin-bottom: 10px;
                 border-radius: 50%;
                 background: #ccc;
@@ -88,32 +87,24 @@ onMounted(() => {
                     height: 100%;
                 }
             }
-        }
-
-        .recommend {
-            padding:10px;
-            height: 100px;
-            font-family: monospace, sans-serif;
-            font-size: 15px;
-            .from {
-                margin-top: 10px;
-                text-align: right;
-            }
-
-        }
-        .grade{
-            height: 200px;
-        }
-        .quit {
-            position: absolute;
-            right: 10px;
-            bottom:10px;
-            display: flex;
-            justify-content: flex-end;
-            .icon {
-
+            .edit {
                 height: 20px;
+                line-height: 20px;
+                display: flex;
+                justify-content: space-evenly;
+                .icon {
+                    width:10px;
+                    height: 10px;
+                }
             }
+        }
+
+       .press {
+        display:  flex;
+        justify-content: space-evenly;
+       }
+        .quit {
+           margin-top: 100px;
         }
 
     } 

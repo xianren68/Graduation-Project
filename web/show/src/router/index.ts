@@ -51,9 +51,9 @@ const routes = [
 
     },
     {
-        name:'setting',
-        path:'/setting',
-        component:()=>import('@/views/setting.vue')
+        name:'self',
+        path:'/self',
+        component:()=>import('@/views/self.vue')
     },
     {
         name:'login',
@@ -65,6 +65,11 @@ const routes = [
         path:'/register',
         component:()=>import('@/views/register.vue')
     },
+    {
+        name:'set',
+        path:'/set',
+        component:()=>import('@/views/set.vue')
+    }
 ]
 const router = createRouter({
     routes,

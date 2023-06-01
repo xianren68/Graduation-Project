@@ -23,7 +23,14 @@ def ciyun(name:str)->str:
 def createCiyun(name,path)->str:
     txt = getComment(name)
     words = jieba.lcut(txt)     #精确分词
-    newtxt = ''.join(words)    #空格拼接
+    newtxt = ''
+    # 去除单字
+    for i in words:
+        if len(i)<2:
+            continue
+        else:
+           newtxt = newtxt + '/' + i 
+    
     wordcloud = WordCloud("./utils/钟齐志莽行书.ttf",height=200,width=400,background_color="white",mode="RGBA",scale=20).generate(newtxt)
     wordcloud.to_file(path)  
     
